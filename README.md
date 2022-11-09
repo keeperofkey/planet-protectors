@@ -1,5 +1,4 @@
-# **Climate Hacks**
-## **Team Planet Protectors**
+# **Team Planet Protectors**
 
 
 OpenAI Climate Hackathon
