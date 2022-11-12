@@ -39,7 +39,7 @@ image = openai.Image.create(prompt=scene.choices[0].text, n=1, size="1024x1024")
 print(image.data[0].url)
 
 img_data = requests.get(image.data[0].url).content
-with open('{}.jpg'.format(caption.choices[0].text), 'wb') as handler:
+with open("./images/{}.jpg".format(caption.choices[0].text), 'wb') as handler:
     handler.write(img_data)
 
 
