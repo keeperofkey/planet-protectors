@@ -5,20 +5,20 @@ import requests
 from PIL import Image, ImageDraw, ImageFont
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-
-concept = openai.Completion.create(
-  model="text-davinci-002",
-  prompt="Generate a concept related to climate change:\n",
-  temperature=1,
-  max_tokens=64,
-  top_p=1,
-  frequency_penalty=1,
-  presence_penalty=1
-)
-print(concept.choices[0].text)
+concept = "Climate change will result in environmental degradation, increased extreme weather conditions, and decreased resource availiblity. This will cause risks to human and ecosystem health and the viablity of infrastucture" 
+#concept = openai.Completion.create(
+#  model="text-davinci-002",
+#  prompt="Generate a concept related to climate change:\n",
+#  temperature=1,
+#  max_tokens=64,
+#  top_p=1,
+#  frequency_penalty=1,
+#  presence_penalty=1
+#)
+#print(concept.choices[0].text)
 scene = openai.Completion.create(
   model="text-davinci-002",
-  prompt="Describe a funny image representing this:\n" + concept.choices[0].text,
+  prompt="Describe a funny image representing this:\n" + concept,
   temperature=1,
   max_tokens=128,
   top_p=1,
