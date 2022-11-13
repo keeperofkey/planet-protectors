@@ -1,3 +1,5 @@
 # Ignore these
 openai
 os
+config/
+config/**

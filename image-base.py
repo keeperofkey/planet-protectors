@@ -6,6 +6,10 @@ import openai
 import requests
 from PIL import Image, ImageDraw, ImageFont
 import random
+#from instabot import Bot
+
+#bot = Bot()
+#bot.login(username="", password="")
 
 climate_concepts = []
 image_descriptions = []
@@ -63,6 +67,10 @@ f_caption = caption.choices[0].text.strip()
 if len(f_caption) > 69:
     s = f_caption[:70] + "\n" + f_caption[70:]
     f_caption = s
+elif len(f_caption) > 138:
+    sen = f_caption.split(" ")
+    s = f_caption[:2]
+    f_caption = s
 #this downloads image locally
 f_img = "./images/{}.jpg".format(f_caption)
 img_data = requests.get(image.data[0].url).content
@@ -75,20 +83,27 @@ font = ImageFont.truetype('SourceCodePro-Black.otf', 24)
 draw.line((0,992) + (1024,992), fill=0, width=64)
 draw.text((0, 960), "{}".format(f_caption), fill=(255, 0, 0), font=font)
 img.save(f_img)
-
+#bot.upload_photo(f_img, caption=concept.choices[0].text)
 #this creates dataframe by ziping lists together
 list_of_tuples = list(zip(climate_concepts, image_descriptions, image_captions))
 climate_change_images_df = pd.DataFrame(list_of_tuples, columns = ['Climate_Concept', 'Image_Description', 'Image_Caption'])
 climate_change_images_df.head()
 
-###Export to Excel###
+#write to json
+df_json = climate_change_images_df.to_json(orient='columns')
+print(df_json)
+f_data = "./data/data.json"
+with open(f_data, 'a') as handler:
+    handler.write(df_json)
 
-#Create a Pandas Excel writer using XlsxWriter as the engine.
-writer = pd.ExcelWriter(file_import_location + 'climate_change_gpt3_image_data.xlsx', engine='xlsxwriter')
-
-# Write each dataframe to a different worksheet.
-climate_change_images_df.to_excel(writer, sheet_name='Image_Data', index=False)
-
-
-# Close the Pandas Excel writer and output the Excel file.
-writer.save()
+####Export to Excel###
+#file_import_location = './data/'
+##Create a Pandas Excel writer using XlsxWriter as the engine.
+#writer = pd.ExcelWriter(file_import_location + 'climate_change_gpt3_image_data.xlsx', engine='xlsxwriter')
+#
+## Write each dataframe to a different worksheet.
+#climate_change_images_df.to_excel(writer, sheet_name='Image_Data', index=False)
+#
+#
+## Close the Pandas Excel writer and output the Excel file.
+#writer.save()
