@@ -16,10 +16,12 @@ image_descriptions = []
 image_captions = []
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
+
+#"Here is a concept about climate change:\n"
 #concept = "Climate change will result in environmental degradation, increased extreme weather conditions, and decreased resource availiblity. This will cause risks to human and ecosystem health and the viablity of infrastucture" 
 concept = openai.Completion.create(
   model="text-davinci-002",
-  prompt="Generate a concept related to climate change:\n",
+  prompt="Generate one concept related to climate change:\n",
   temperature=1,
   max_tokens=64,
   top_p=1,
@@ -29,10 +31,10 @@ concept = openai.Completion.create(
 print(concept.choices[0].text)
 climate_concepts.append(concept.choices[0].text.strip())
 
-#this generates the prompt for DALL-E needs context/concept first
+#this generates the prompt for DALL-E needs context/concept first"Describe a funny image about this:\n"
 scene = openai.Completion.create(
   model="text-davinci-002",
-  prompt=concept.choices[0].text + "Describe a funny image about this:\n",
+  prompt=concept.choices[0].text + "Describe an image that represents this idea:",
   temperature=1,
   max_tokens=128,
   top_p=1,
@@ -55,8 +57,10 @@ caption = openai.Completion.create(
 print(caption.choices[0].text)
 image_captions.append(caption.choices[0].text.strip())
 #sprinkle of style
-styles = ["Gothic","Surreal","Painting","Photograph","Rendering"]
-style = random.choice(styles)
+mood = ["Gothic","Surreal","Vaporwave","Cyberpunk"]
+styles = ["Painting","Photograph","Rendering","Experimental","Drawing","Sculpture","Installation"]
+style = random.choice(mood) +" "+ random.choice(styles)
+print(style)
 prompt = scene.choices[0].text + "," + style
 #this calls DALLE to gen a single image
 image = openai.Image.create(prompt=prompt, n=1, size="1024x1024")
