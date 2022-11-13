@@ -21,33 +21,33 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 #concept = "Climate change will result in environmental degradation, increased extreme weather conditions, and decreased resource availiblity. This will cause risks to human and ecosystem health and the viablity of infrastucture" 
 concept = openai.Completion.create(
   model="text-davinci-002",
-  prompt="Generate one concept related to climate change:\n",
+  prompt="Generate one concept related to climate change:",
   temperature=1,
-  max_tokens=64,
+  max_tokens=32,
   top_p=1,
   frequency_penalty=1,
   presence_penalty=1
 )
-print(concept.choices[0].text)
+print(concept.choices[0].text.strip())
 climate_concepts.append(concept.choices[0].text.strip())
 
 #this generates the prompt for DALL-E needs context/concept first"Describe a funny image about this:\n"
 scene = openai.Completion.create(
   model="text-davinci-002",
-  prompt=concept.choices[0].text + "Describe an image that represents this idea:",
+  prompt=concept.choices[0].text.strip() + "Describe an image that represents this:",
   temperature=1,
   max_tokens=128,
   top_p=1,
   frequency_penalty=1,
   presence_penalty=1
 )
-print(scene.choices[0].text)
+print(scene.choices[0].text.strip())
 image_descriptions.append(scene.choices[0].text.strip())
 
 #this writes the caption for the image described not sure impact of order here
 caption = openai.Completion.create(
   model="text-davinci-002",
-  prompt=scene.choices[0].text + "Write a funny caption about this:\n",
+  prompt=concept.choices[0].text.strip() + "," + scene.choices[0].text.strip() + "Write a funny caption about this:",
   temperature=1,
   max_tokens=64,
   top_p=1,
@@ -57,17 +57,18 @@ caption = openai.Completion.create(
 print(caption.choices[0].text)
 image_captions.append(caption.choices[0].text.strip())
 #sprinkle of style
-mood = ["Gothic","Surreal","Vaporwave","Cyberpunk"]
+lighting = ["Golden Hour", "Blue Hour", "Midday", "Overcast"]
+mood = ["Gothic","Surreal","Vaporwave","Cyberpunk","Afrofuturism"]
 styles = ["Painting","Photograph","Rendering","Experimental","Drawing","Sculpture","Installation"]
-style = random.choice(mood) +" "+ random.choice(styles)
+style = random.choice(mood) +" "+ random.choice(styles) +" "+ random.choice(lighting)
 print(style)
-prompt = scene.choices[0].text + "," + style
+prompt = scene.choices[0].text.strip() + "," + style
 #this calls DALLE to gen a single image
 image = openai.Image.create(prompt=prompt, n=1, size="1024x1024")
 print(image.data[0].url)
 
 #this formats caption could have more cases
-f_caption = caption.choices[0].text.strip()
+f_caption = caption.choices[0].text.strip("\n")
 if len(f_caption) > 69:
     s = f_caption[:70] + "\n" + f_caption[70:]
     f_caption = s
