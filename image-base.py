@@ -17,8 +17,6 @@ image_captions = []
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-#"Here is a concept about climate change:\n"
-#concept = "Climate change will result in environmental degradation, increased extreme weather conditions, and decreased resource availiblity. This will cause risks to human and ecosystem health and the viablity of infrastucture" 
 concept = openai.Completion.create(
   model="text-davinci-002",
   prompt="Generate one solution to climate change:",
@@ -31,7 +29,7 @@ concept = openai.Completion.create(
 print(concept.choices[0].text.strip() + "\n")
 climate_concepts.append(concept.choices[0].text.strip())
 
-#this generates the prompt for DALL-E needs context/concept first"Describe a funny image about this:\n"
+#this generates the prompt for DALL-E needs context/concept first
 scene = openai.Completion.create(
   model="text-davinci-002",
   prompt=concept.choices[0].text.strip() + "Describe an image that represents this:",
