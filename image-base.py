@@ -6,8 +6,9 @@ import openai
 import requests
 from PIL import Image, ImageDraw, ImageFont
 import random
-#from instabot import Bot
 
+#possible intergration into Instagram
+#from instabot import Bot
 #bot = Bot()
 #bot.login(username="", password="")
 
