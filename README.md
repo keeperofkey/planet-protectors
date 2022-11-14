@@ -1,5 +1,8 @@
 # **Team Planet Protectors**
-<img src="images/planet-protectors.png">
+## **A meme generator for climate change**
+### Trying to make people laugh and maybe think
+<img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%22I'm%20just%20trying%20to%20get%20my%20daily%20recommended%20intake%20of%20trees!%22.jpg">
+<img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%22I'm%20not%20crazy,%20I'm%20just%20cool.%22.jpg?raw=true">
 <img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%0A%22Wtf%20is%20happening%20to%20my%20home%3F!%22.jpg">
 <img src="https://raw.githubusercontent.com/keeperofkey/planet-protectors/b8006eb463186f85a0a2c1f6a20ab53b8642d5d0/images/The%20sun%20is%20my%20hottie%20and%20I'm%20just%20tryin%20to%20get%20some%20rays..jpg">
 <img src="https://raw.githubusercontent.com/keeperofkey/planet-protectors/ef8ddfb26d5af740bbd641d98505b453f325978b/images/%20%22I'm%20harnessing%20the%20power%20of%20the%20sun%20to%20save%20the%20planet!%22.jpg">
@@ -32,14 +35,14 @@
 <img src="https://raw.githubusercontent.com/keeperofkey/planet-protectors/ef8ddfb26d5af740bbd641d98505b453f325978b/images/%22I%20love%20burning%20fossil%20fuels!%20It's%20my%20favorite%20way%20to%20help%20destroy%20the%0A%20planet!%22.jpg">
 <img src="https://raw.githubusercontent.com/keeperofkey/planet-protectors/ef8ddfb26d5af740bbd641d98505b453f325978b/images/%22I%20told%20you%20we%20should%20have%20went%20left!%22.jpg">
 <img src="https://raw.githubusercontent.com/keeperofkey/planet-protectors/ef8ddfb26d5af740bbd641d98505b453f325978b/images/%22I'm%20a%20walking%2C%20talking%20solar%20panel!%22.jpg">
-<img src="">
-<img src="">
-<img src="">
-<img src="">
-<img src="">
-<img src="">
-<img src="">
-<img src="">
-<img src="">
-<img src="">
-OpenAI Climate Hackathon
+<img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%20climate%20change%20is%20hot%20right%20now.jpg?raw=true">
+<img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%22Hey%20plants%2C%20welcome%20to%20my%20sauna!%22.jpg">
+<img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%22I'm%20not%20just%20a%20pretty%20face%2C%20I%20also%20generate%20electricity.%22.jpg">
+<img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%22I'm%20not%20just%20a%20solar%20panel%2C%20I'm%20a%20people%20person!%22.jpg">
+<img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%22I'm%20not%20sure%20if%20this%20is%20the%20right%20flavor...%22.jpg">
+<img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%22I'm%20not%20sure%20what's%20going%20on%2C%20but%20I'm%20pretty%20sure%20the%20Earth%20is%20trying%0A%20to%20give%20me%20a%20hug.%22.jpg">
+<img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%22I'm%20not%20worried%20about%20climate%20change.%20I'll%20just%20stick%20my%20head%20in%20the%20%0Asand%20and%20pretend%20it's%20not%20happening.%22.jpg">
+<img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%22I'm%20protesting%20the%20use%20of%20fossil%20fuels...%20but%20I'm%20also%20kind%20of%20hoping%0A%20this%20gas%20mask%20will%20help%20me%20avoid%20that%20awkward%20office%20small%20talk.%22.jpg">
+<img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%22It%20turns%20out%20global%20warming%20is%20expensive!%22.jpg">
+
+OpenAI Climate Hackathon 2022
