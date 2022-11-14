@@ -18,7 +18,7 @@ image_descriptions = []
 image_captions = []
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-while i < 100:
+while i < 264:
     concept = openai.Completion.create(
       model="text-davinci-002",
       prompt="Generate a concept about climate change:",
@@ -106,6 +106,21 @@ while i < 100:
     if i == 48:
         time.sleep(300)
     if i == 72:
+        time.sleep(300)
+    if i == 96:
+        time.sleep(300)
+    if i == 120:
+        time.sleep(300)
+    if i == 144:
+        time.sleep(300)
+
+    if i == 168:
+        time.sleep(300)
+    if i == 192:
+        time.sleep(300)
+    if i == 216:
+        time.sleep(300)
+    if i == 240:
         time.sleep(300)
 ####Export to Excel###
 #file_import_location = './data/'
