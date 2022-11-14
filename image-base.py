@@ -28,7 +28,7 @@ concept = openai.Completion.create(
   frequency_penalty=1,
   presence_penalty=1
 )
-print(concept.choices[0].text.strip())
+print(concept.choices[0].text.strip() + "\n")
 climate_concepts.append(concept.choices[0].text.strip())
 
 #this generates the prompt for DALL-E needs context/concept first"Describe a funny image about this:\n"
@@ -41,7 +41,7 @@ scene = openai.Completion.create(
   frequency_penalty=1,
   presence_penalty=1
 )
-print(scene.choices[0].text.strip())
+print(scene.choices[0].text.strip() + "\n")
 image_descriptions.append(scene.choices[0].text.strip())
 
 #this writes the caption for the image described not sure impact of order here
@@ -54,7 +54,7 @@ caption = openai.Completion.create(
   frequency_penalty=1,
   presence_penalty=1
 ) 
-print(caption.choices[0].text)
+print(caption.choices[0].text + "\n")
 image_captions.append(caption.choices[0].text.strip())
 #sprinkle of style
 lighting = ["Golden Hour", "Blue Hour", "Midday", "Overcast"]
