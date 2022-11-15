@@ -18,28 +18,29 @@ image_descriptions = []
 image_captions = []
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
-while i < 264:
+while i < 25:
     concept = openai.Completion.create(
       model="text-davinci-002",
       prompt="Generate a concept about climate change:",
-      temperature=1,
+      temperature=0.8,
       max_tokens=32,
       top_p=1,
       frequency_penalty=1,
-      presence_penalty=1
+      presence_penalty=2,
+      stop="\n"
     )
     print(concept.choices[0].text.strip() + "\n")
-    climate_concepts.append(concept.choices[0].text.strip())
+    climate_concepts.append(concept.choices[0].text.strip("\n"))
     
     #this generates the prompt for DALL-E needs context/concept first
     scene = openai.Completion.create(
       model="text-davinci-002",
-      prompt=concept.choices[0].text.strip() + "Describe an funny image that relates to this:",
+      prompt="Here is a concept:" + concept.choices[0].text.strip("\n") + "Describe an funny image that relates to this:",
       temperature=1,
-      max_tokens=64,
+      max_tokens=128,
       top_p=1,
       frequency_penalty=1,
-      presence_penalty=1
+      presence_penalty=2
     )
     print(scene.choices[0].text.strip() + "\n")
     image_descriptions.append(scene.choices[0].text.strip())
@@ -52,17 +53,17 @@ while i < 264:
       max_tokens=32,
       top_p=1,
       frequency_penalty=1,
-      presence_penalty=1
+      presence_penalty=2
     ) 
     print(caption.choices[0].text + "\n")
-    image_captions.append(caption.choices[0].text.strip())
+    image_captions.append(caption.choices[0].text.strip("\n"))
     #sprinkle of style
-    lighting = ["Golden Hour", "Blue Hour", "Midday", "Overcast"]
-    mood = ["Gothic","Surreal","Cyberpunk","Afrofuturism"]
-    styles = ["Painting","Photograph","Rendering","Experimental","Drawing","Sculpture",]
-    style =random.choice(styles) + ", " + random.choice(lighting) + ", " + random.choice(mood)
-    print(style)
-    prompt = scene.choices[0].text.strip() + "," + style
+    #lighting = ["Golden Hour", "Blue Hour", "Midday", "Overcast"]
+    #mood = ["Gothic","Surreal","Cyberpunk","Afrofuturism"]
+    #styles = ["Painting","Photograph","Rendering","Experimental","Drawing","Sculpture",]
+    #style = random.choice(styles) + ", " + random.choice(lighting) + ", " + random.choice(mood)
+    #print(style)
+    prompt = scene.choices[0].text.strip() # + "," + style
     #this calls DALLE to gen a single image
     image = openai.Image.create(prompt=prompt, n=1, size="1024x1024")
     print(image.data[0].url)
@@ -90,38 +91,17 @@ while i < 264:
     img.save(f_img)
     #bot.upload_photo(f_img, caption=concept.choices[0].text)
     #this creates dataframe by ziping lists together
-    list_of_tuples = list(zip(climate_concepts, image_descriptions, image_captions))
-    climate_change_images_df = pd.DataFrame(list_of_tuples, columns = ['Climate_Concept', 'Image_Description', 'Image_Caption'])
-    climate_change_images_df.head()
+    #list_of_tuples = list(zip(climate_concepts, image_descriptions))
+    #climate_change_images_df = pd.DataFrame(list_of_tuples, columns = ['prompt', 'completion'])
+    #climate_change_images_df.head()
     
     #write to json
-    df_json = climate_change_images_df.to_json(orient='columns')
-    print(df_json)
-    f_data = "./data/data.json"
-    with open(f_data, 'a') as handler:
-        handler.write(df_json)
+    #df_json = climate_change_images_df.to_json(orient='columns')
+    #print(df_json)
+    #f_data = "./data/data.json"
+    #with open(f_data, 'a') as handler:
+    #    handler.write(df_json)
     i += 1
-    if i == 24:
-        time.sleep(300)
-    if i == 48:
-        time.sleep(300)
-    if i == 72:
-        time.sleep(300)
-    if i == 96:
-        time.sleep(300)
-    if i == 120:
-        time.sleep(300)
-    if i == 144:
-        time.sleep(300)
-
-    if i == 168:
-        time.sleep(300)
-    if i == 192:
-        time.sleep(300)
-    if i == 216:
-        time.sleep(300)
-    if i == 240:
-        time.sleep(300)
 ####Export to Excel###
 #file_import_location = './data/'
 ##Create a Pandas Excel writer using XlsxWriter as the engine.
