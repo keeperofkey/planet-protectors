@@ -1,6 +1,6 @@
 # **Team Planet Protectors**
 ## **A meme generator for climate change**
-### Trying to make people laugh and maybe think
+
 <img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%22I'm%20just%20trying%20to%20get%20my%20daily%20recommended%20intake%20of%20trees!%22.jpg">
 <img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%22I'm%20not%20crazy,%20I'm%20just%20cool.%22.jpg?raw=true">
 <img src="https://github.com/keeperofkey/planet-protectors/blob/main/images/%0A%22Wtf%20is%20happening%20to%20my%20home%3F!%22.jpg">
