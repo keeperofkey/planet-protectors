@@ -7,48 +7,46 @@ import requests
 from PIL import Image, ImageDraw, ImageFont
 import random
 import time
+import json
 
 #possible intergration into Instagram
 #from instabot import Bot
 #bot = Bot()
 #bot.login(username="", password="")
 i=0
-climate_concepts = []
-image_descriptions = []
-image_captions = []
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 while i < 25:
     concept = openai.Completion.create(
       model="text-davinci-002",
-      prompt="Generate a concept about climate change:",
+      prompt="Generate a summary of a study about climate change:",
       temperature=0.8,
       max_tokens=32,
       top_p=1,
       frequency_penalty=1,
       presence_penalty=2,
-      stop="\n"
+      stop="."
     )
     print(concept.choices[0].text.strip() + "\n")
-    climate_concepts.append(concept.choices[0].text.strip("\n"))
     
+    climate_concept = concept.choices[0].text.strip("\n")
     #this generates the prompt for DALL-E needs context/concept first
     scene = openai.Completion.create(
       model="text-davinci-002",
-      prompt="Here is a concept:" + concept.choices[0].text.strip("\n") + "Describe an funny image that relates to this:",
+      prompt="Here is a concept:\n" + climate_concept + "\n" + "Describe an image that conveys this:",
       temperature=1,
       max_tokens=128,
       top_p=1,
       frequency_penalty=1,
-      presence_penalty=2
+      presence_penalty=2,
+      echo=True
     )
     print(scene.choices[0].text.strip() + "\n")
-    image_descriptions.append(scene.choices[0].text.strip())
-    
+    img_desc = scene.choices[0].text.strip("\n")
     #this writes the caption for the image described not sure impact of order here
     caption = openai.Completion.create(
       model="text-davinci-002",
-      prompt=scene.choices[0].text.strip() + "Write a funny caption about this:",
+      prompt=img_desc + "Write a funny caption about this:",
       temperature=1,
       max_tokens=32,
       top_p=1,
@@ -56,16 +54,15 @@ while i < 25:
       presence_penalty=2
     ) 
     print(caption.choices[0].text + "\n")
-    image_captions.append(caption.choices[0].text.strip("\n"))
     #sprinkle of style
     #lighting = ["Golden Hour", "Blue Hour", "Midday", "Overcast"]
     #mood = ["Gothic","Surreal","Cyberpunk","Afrofuturism"]
     #styles = ["Painting","Photograph","Rendering","Experimental","Drawing","Sculpture",]
     #style = random.choice(styles) + ", " + random.choice(lighting) + ", " + random.choice(mood)
     #print(style)
-    prompt = scene.choices[0].text.strip() # + "," + style
+    #prompt = scene.choices[0].text.strip() + "," + style
     #this calls DALLE to gen a single image
-    image = openai.Image.create(prompt=prompt, n=1, size="1024x1024")
+    image = openai.Image.create(prompt=img_desc, n=1, size="1024x1024")
     print(image.data[0].url)
     
     #this formats caption could have more cases
@@ -96,11 +93,12 @@ while i < 25:
     #climate_change_images_df.head()
     
     #write to json
-    #df_json = climate_change_images_df.to_json(orient='columns')
-    #print(df_json)
-    #f_data = "./data/data.json"
-    #with open(f_data, 'a') as handler:
-    #    handler.write(df_json)
+    obj = {"prompt": climate_concept, "completion": img_desc}
+    df_json = json.dumps(obj)
+    print(df_json)
+    f_data = "./data/data.jsonl"
+    with open(f_data, 'a') as handler:
+        handler.write(df_json + "\n")
     i += 1
 ####Export to Excel###
 #file_import_location = './data/'
